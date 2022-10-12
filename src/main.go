@@ -3,5 +3,6 @@ package main
 import "src/Dossier_Package"
 
 func main() {
-	Dossier_Package.Dossier()
+	var j1 Dossier_Package.Joueur
+	j1.Init()
 }
