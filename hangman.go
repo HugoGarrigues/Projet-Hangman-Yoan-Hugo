@@ -75,8 +75,6 @@ func chooseAleatoryWords() string {
 	return words[rand.Intn(len(words))]
 }
 
-/* The programm will reveal n random letters in the word, where n is the len(word) / 2 - 1 */
-
 func revealWord(mot string) {
 	nbLettre := len(mot)/2 - 1
 	if nbLettre < 1 {
