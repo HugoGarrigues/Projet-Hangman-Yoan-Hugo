@@ -7,7 +7,9 @@ import (
 )
 
 type Joueur struct {
-	nom string
+	nom        string
+	essais     int
+	chaine_mot []string
 }
 
 func (j *Joueur) Initialisation() {
@@ -21,6 +23,7 @@ func (j *Joueur) Initialisation() {
 		if j.verif_nom(j.nom) {
 			j.nom = j.majuscule(j.nom)
 			fmt.Println("Votre nom est ", j.nom)
+			j.essais = 10
 			break
 		}
 		fmt.Println("Votre nom est invalide")

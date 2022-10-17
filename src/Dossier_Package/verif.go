@@ -1,6 +1,7 @@
 package Dossier_Package
 
 import (
+	"fmt"
 	"strings"
 	"unicode"
 )
@@ -37,4 +38,12 @@ func motEstTrouve(motCache string) bool {
 
 func nombreEssaisEpuise(nombreEssais int) bool {
 	return nombreEssais == 0
+}
+
+func verif_utilisation(tab []string, letter string) {
+	for _, element := range tab {
+		if element == letter {
+			fmt.Println("Vous avez déjà utilisé cette lettre")
+		}
+	}
 }
