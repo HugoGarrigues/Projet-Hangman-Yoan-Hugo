@@ -5,118 +5,83 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
 func main() {
-	compteur := 0
-	words := chooseAleatoryWords()
-	var letter string
-	var choix string
-	for {
-		if compteur == 0 {
-			fmt.Println("Bienvenue dans le jeu du Pendu")
-		}
-		compteur++
-		if compteur == 10 {
-			fmt.Println("You lost")
-			break
-		}
-		fmt.Println("Mot à deviner : ")
-		revealWord(words)
-		fmt.Println("\n")
-		fmt.Println("")
-		fmt.Println("Il vous reste ", 10-compteur, " essais")
-		fmt.Println("1. Deviner une lettre")
-		fmt.Println("2. Deviner le mot")
-		fmt.Scanln(&choix)
-		switch choix {
-		case "1":
-			fmt.Println("Devinez une lettre")
-			fmt.Scanln(&letter)
-			if len(letter) > 1 {
-				fmt.Println("Vous devez entrer une seule lettre")
-			} else {
-				checkLetter(words, letter)
-			}
-		case "2":
-			fmt.Println("Devinez le mot")
-			fmt.Scanln(&letter)
-			if letter == words {
-				fmt.Println("You won")
-				break
-			} else {
-				fmt.Println("You lost")
-				break
-			}
-		default:
-			fmt.Println("Veuiilez entrer 1 ou 2")
-		}
-	}
-}
-
-func chooseAleatoryWords() string {
-	words := []string{}
-	file, err := os.Open("hangman_words.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		words = append(words, scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		panic(err)
-	}
-	rand.Seed(time.Now().UnixNano())
-	return words[rand.Intn(len(words))]
-}
-
-/* The programm will reveal n random letters in the word, where n is the len(word) / 2 - 1 */
-
-func revealWord(mot string) {
-	nbLettre := len(mot)/2 - 1
-	if nbLettre < 1 {
-		for i := 0; i < len(mot); i++ {
-			fmt.Print("_ ")
-		}
-	} else {
-		for i := 0; i < nbLettre; i++ {
-			fmt.Print("_ ")
-		}
-		for i := nbLettre; i < len(mot); i++ {
-			fmt.Print(string(mot[i]), " ")
-		}
-	}
-}
-
-func checkWord(mot string, letter string) bool {
-	for i := 0; i < len(mot); i++ {
-		if string(mot[i]) == letter {
-			return true
-		}
-	}
-	return false
-}
-
-func checkLetter(mot string, letter string) {
-	if checkWord(mot, letter) {
-		fmt.Println("Correct")
-		actualiseWord(mot, letter)
-	} else {
-		fmt.Println("Wrong")
-	}
-}
-
-func actualiseWord(mot string, letter string) {
-	for i := 0; i < len(mot); i++ {
-		if string(mot[i]) == letter {
-			fmt.Println(mot[i])
+	mot := motAleatoire()
+	motCache := strings.Repeat("_", len(mot))
+	nombreEssais := 10
+	for !motEstTrouve(motCache) && !nombreEssaisEpuise(nombreEssais) {
+		afficheMotCache(motCache)
+		lettre := saisieLettre()
+		if lettreEstPresente(lettre, mot) {
+			motCache = afficheMotAvecLettreTrouvee(lettre, mot, motCache)
 		} else {
-			fmt.Printf("_ ")
+			nombreEssais--
 		}
+	}
+
+	afficheResultat(motCache, mot, nombreEssais)
+}
+
+func motAleatoire() string {
+	fichier, err := os.Open("mot.txt")
+	if err != nil {
+		fmt.Println("Erreur lors de l'ouverture du fichier")
+	}
+	defer fichier.Close()
+
+	scanner := bufio.NewScanner(fichier)
+	var mots []string
+	for scanner.Scan() {
+		mots = append(mots, scanner.Text())
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	return mots[rand.Intn(len(mots))]
+}
+
+func afficheMotCache(motCache string) {
+	fmt.Println(motCache)
+}
+
+func saisieLettre() string {
+	var lettre string
+	fmt.Println("Saisir une lettre : ")
+	fmt.Scan(&lettre)
+	return lettre
+}
+
+func lettreEstPresente(lettre string, mot string) bool {
+	return strings.Contains(mot, lettre)
+}
+
+func afficheMotAvecLettreTrouvee(lettre string, mot string, motCache string) string {
+	var motCacheTemporaire string
+	for i := 0; i < len(mot); i++ {
+		if string(mot[i]) == lettre {
+			motCacheTemporaire += lettre
+		} else {
+			motCacheTemporaire += string(motCache[i])
+		}
+	}
+	return motCacheTemporaire
+}
+
+func motEstTrouve(motCache string) bool {
+	return !strings.Contains(motCache, "_")
+}
+
+func nombreEssaisEpuise(nombreEssais int) bool {
+	return nombreEssais == 0
+}
+
+func afficheResultat(motCache string, mot string, nombreEssais int) {
+	if motEstTrouve(motCache) {
+		fmt.Println("Bravo, vous avez trouvé le mot !")
+	} else {
+		fmt.Println("Vous avez perdu ! Le mot était : ", mot)
 	}
 }
