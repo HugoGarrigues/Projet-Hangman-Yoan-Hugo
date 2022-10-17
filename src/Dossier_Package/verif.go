@@ -2,6 +2,7 @@ package Dossier_Package
 
 import (
 	"unicode"
+	"strings"
 )
 
 
@@ -26,4 +27,16 @@ func (j *Joueur) verif_nom(nom string) bool {
 		}
 	}
 	return nb_lettre == len(nom)
+}
+
+func lettreEstPresente(lettre string, mot string) bool {
+	return strings.Contains(mot, lettre)
+}
+
+func motEstTrouve(motCache string) bool {
+	return !strings.Contains(motCache, "_")
+}
+
+func nombreEssaisEpuise(nombreEssais int) bool {
+	return nombreEssais == 0
 }

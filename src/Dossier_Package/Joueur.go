@@ -12,7 +12,7 @@ type Joueur struct{
 	mot_choisi string
 }
 
-func (j *Joueur) Init() {
+func (j *Joueur) Initialisation() {
 	for {
 		fmt.Println("Choisissez votre nom comprenant que des lettres (pas d'espace ni d'accent):")
 		scanner := bufio.NewScanner(os.Stdin)
