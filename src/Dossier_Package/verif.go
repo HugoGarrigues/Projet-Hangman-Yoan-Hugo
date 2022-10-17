@@ -1,11 +1,9 @@
 package Dossier_Package
 
 import (
-	"unicode"
 	"strings"
+	"unicode"
 )
-
-
 
 func (j *Joueur) majuscule(nom string) string {
 	var nom_maj string

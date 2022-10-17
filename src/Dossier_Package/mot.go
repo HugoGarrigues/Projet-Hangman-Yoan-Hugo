@@ -55,3 +55,16 @@ func afficheResultat(motCache string, mot string, nombreEssais int) {
 		fmt.Println("Vous avez perdu ! Le mot était : ", mot)
 	}
 }
+
+func motCache(mot string) string {
+	var motCache string
+	nblettreCache := len(mot)/2 - 1
+	for i := 0; i < len(mot); i++ {
+		if i < nblettreCache {
+			motCache += "_"
+		} else {
+			motCache += string(mot[i])
+		}
+	}
+	return motCache
+}

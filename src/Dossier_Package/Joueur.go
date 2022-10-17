@@ -6,10 +6,8 @@ import (
 	"os"
 )
 
-type Joueur struct{
+type Joueur struct {
 	nom string
-	lettre_choisi string
-	mot_choisi string
 }
 
 func (j *Joueur) Initialisation() {

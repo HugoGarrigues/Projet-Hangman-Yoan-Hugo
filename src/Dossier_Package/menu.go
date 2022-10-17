@@ -3,7 +3,6 @@ package Dossier_Package
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func (j *Joueur) Menu() {
@@ -30,14 +29,12 @@ func (j *Joueur) Menu() {
 		fmt.Println("Choix invalide")
 		j.Menu()
 	}
-	for {
-		j.sousMenu()
-	}
+	j.sousMenu()
 }
 
 func (j *Joueur) sousMenu() {
 	mot := motAleatoire()
-	motCache := strings.Repeat("_", len(mot))
+	motCache := motCache(mot)
 	nombreEssais := 10
 	for !motEstTrouve(motCache) && !nombreEssaisEpuise(nombreEssais) {
 		afficheMotCache(motCache)
