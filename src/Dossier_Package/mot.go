@@ -1,10 +1,10 @@
 package Dossier_Package
 
 import (
-	"os"
-	"fmt"
 	"bufio"
+	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
