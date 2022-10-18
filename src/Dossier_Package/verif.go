@@ -43,7 +43,22 @@ func nombreEssaisEpuise(nombreEssais int) bool {
 func verif_utilisation(tab []string, letter string) {
 	for _, element := range tab {
 		if element == letter {
-			fmt.Println("Vous avez déjà utilisé cette lettre")
+			fmt.Println("Vous avez déjà utilisé cette lettre ")
 		}
 	}
+}
+
+
+func verif_minuscule(lettre string) bool {
+	return lettre != strings.ToUpper(lettre)
+}
+
+
+func minuscule(lettre string) string {
+	return strings.ToLower(lettre)
+}
+
+//fonction qui verifie si c'est seulement des lettres avec une string en argument
+func verif_lettre(lettre string) bool {
+	return lettre != strings.ToUpper(lettre)
 }
