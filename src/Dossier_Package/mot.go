@@ -11,7 +11,7 @@ import (
 func motAleatoire() string {
 	fichier, err := os.Open("mot.txt")
 	if err != nil {
-		fmt.Println("Erreur lors de l'ouverture du fichier")
+		fmt.Println("Erreur lors de l'ouverture du fichier !")
 	}
 	defer fichier.Close()
 
@@ -33,6 +33,21 @@ func saisieLettre() string {
 	var lettre string
 	fmt.Println("Saisir une lettre : ")
 	fmt.Scan(&lettre)
+	if len(lettre) != 1 {
+		fmt.Println("Vous devez saisir une seule lettre ! ")
+		return saisieLettre()
+	}else if lettre == " " {
+		fmt.Println("Vous devez saisir une lettre ! ")
+		return saisieLettre()
+	}else if lettre == "" {
+		fmt.Println("Vous devez saisir une lettre ! ")
+		return saisieLettre()
+	}else if verif_lettre(lettre) == false {
+		fmt.Println("Vous devez saisir une lettre ! ")
+		return saisieLettre()	
+	}else if verif_minuscule(lettre) == false  {
+		lettre = minuscule(lettre)
+	}				
 	return lettre
 }
 
@@ -50,7 +65,7 @@ func afficheMotAvecLettreTrouvee(lettre string, mot string, motCache string) str
 
 func afficheResultat(motCache string, mot string, nombreEssais int) {
 	if motEstTrouve(motCache) {
-		fmt.Println("Bravo, vous avez trouvé le mot !")
+		fmt.Println("Bravo, vous avez trouvé le mot ! \n Le mot etait ",motAleatoire())
 	} else {
 		fmt.Println("Vous avez perdu ! Le mot était : ", mot)
 	}
