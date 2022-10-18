@@ -21,7 +21,7 @@ func (j *Joueur) Menu() {
 	switch choix {
 	case 1:
 		j.Initialisation()
-		j.sousMenu()
+		j.lancement()
 	case 2:
 		fmt.Println("Merci d'avoir joué")
 		os.Exit(0)
@@ -29,21 +29,5 @@ func (j *Joueur) Menu() {
 		fmt.Println("Choix invalide")
 		j.Menu()
 	}
-	j.sousMenu()
 }
 
-func (j *Joueur) sousMenu() {
-	mot := motAleatoire()
-	motCache := motCache(mot)
-	nombreEssais := 10
-	for !motEstTrouve(motCache) && !nombreEssaisEpuise(nombreEssais) {
-		afficheMotCache(motCache)
-		lettre := saisieLettre()
-		if lettreEstPresente(lettre, mot) {
-			motCache = afficheMotAvecLettreTrouvee(lettre, mot, motCache)
-		} else {
-			nombreEssais--
-		}
-	}
-	afficheResultat(motCache, mot, nombreEssais)
-}
