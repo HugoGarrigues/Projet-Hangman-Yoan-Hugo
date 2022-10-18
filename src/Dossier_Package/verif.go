@@ -59,3 +59,12 @@ func minuscule(lettre string) string {
 func verif_lettre(lettre string) bool {
 	return lettre != strings.ToUpper(lettre)
 }
+
+func verifierLettre(lettre string, mot string, motCache string, nombreEssais int) (string, int) {
+	if lettreEstPresente(lettre, mot) {
+		motCache = afficheMotAvecLettreTrouvee(lettre, mot, motCache)
+	} else {
+		nombreEssais -= 1
+	}
+	return motCache, nombreEssais
+}
