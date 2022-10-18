@@ -47,3 +47,7 @@ func verif_utilisation(tab []string, letter string) {
 		}
 	}
 }
+
+func verifierLettre(lettre string, mot string) bool {
+	return lettreEstPresente(lettre, mot)
+}

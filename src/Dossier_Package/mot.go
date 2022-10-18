@@ -56,15 +56,33 @@ func afficheResultat(motCache string, mot string, nombreEssais int) {
 	}
 }
 
-func motCache(mot string) string {
-	var motCache string
-	nblettreCache := len(mot)/2 - 1
-	for i := 0; i < len(mot); i++ {
-		if i < nblettreCache {
-			motCache += "_"
-		} else {
-			motCache += string(mot[i])
+func masquerMot(mot string) string {
+	n := len(mot)/2 - 1
+	runes := []rune(mot)
+	var indexes []int
+	var revealed []rune
+	for i := 0; i < n; i++ {
+		index := rand.Intn(len(runes))
+		for contains(indexes, index) {
+			index = rand.Intn(len(runes))
+		}
+		indexes = append(indexes, index)
+		revealed = append(revealed, runes[index])
+	}
+	for i := 0; i < len(runes); i++ {
+		if !contains(indexes, i) {
+			runes[i] = '_'
 		}
 	}
-	return motCache
+
+	return string(runes)
+}
+
+func contains(slice []int, element int) bool {
+	for _, e := range slice {
+		if e == element {
+			return true
+		}
+	}
+	return false
 }

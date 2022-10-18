@@ -7,9 +7,8 @@ import (
 )
 
 type Joueur struct {
-	nom        string
-	essais     int
-	chaine_mot []string
+	nom    string
+	essais int
 }
 
 func (j *Joueur) Initialisation() {

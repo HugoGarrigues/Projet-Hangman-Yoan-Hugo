@@ -10,7 +10,7 @@ func (j *Joueur) Menu() {
 	fmt.Println("______________________________________")
 	fmt.Println("|                                     |")
 	fmt.Println("|    BIENVENUE A VOUS DANS CE JEU     |")
-	fmt.Println("|                         	           |")
+	fmt.Println("|                                     |")
 	fmt.Println("|             Le Pendu                |")
 	fmt.Println("|                                     |")
 	fmt.Println("|         1. Commencer le jeu         |")
@@ -30,4 +30,3 @@ func (j *Joueur) Menu() {
 		j.Menu()
 	}
 }
-
