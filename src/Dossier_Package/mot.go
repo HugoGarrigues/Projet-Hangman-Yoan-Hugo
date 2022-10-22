@@ -36,18 +36,18 @@ func saisieLettre() string {
 	if len(lettre) != 1 {
 		fmt.Println("Vous devez saisir une seule lettre ! ")
 		return saisieLettre()
-	}else if lettre == " " {
+	} else if lettre == " " {
 		fmt.Println("Vous devez saisir une lettre ! ")
 		return saisieLettre()
-	}else if lettre == "" {
+	} else if lettre == "" {
 		fmt.Println("Vous devez saisir une lettre ! ")
 		return saisieLettre()
-	}else if verif_lettre(lettre) == false {
+	} else if verif_lettre(lettre) == false {
 		fmt.Println("Vous devez saisir une lettre ! ")
-		return saisieLettre()	
-	}else if verif_minuscule(lettre) == false  {
+		return saisieLettre()
+	} else if verif_minuscule(lettre) == false {
 		lettre = minuscule(lettre)
-	}				
+	}
 	return lettre
 }
 
@@ -65,7 +65,7 @@ func afficheMotAvecLettreTrouvee(lettre string, mot string, motCache string) str
 
 func afficheResultat(motCache string, mot string, nombreEssais int) {
 	if motEstTrouve(motCache) {
-		fmt.Println("Bravo, vous avez trouvé le mot ! \n Le mot etait ",motAleatoire())
+		fmt.Println("Bravo, vous avez trouvé le mot ! \n Le mot etait ", mot)
 	} else {
 		fmt.Println("Vous avez perdu ! Le mot était : ", mot)
 	}
@@ -100,4 +100,13 @@ func contains(slice []int, element int) bool {
 		}
 	}
 	return false
+}
+
+func (j *Joueur) ajoutLettre(lettre string) {
+	if lettreEstPresente(lettre, j.chaine_mot) {
+		fmt.Println("Vous avez déjà essayé cette lettre !")
+		j.essais++
+	} else {
+		j.chaine_mot += lettre
+	}
 }

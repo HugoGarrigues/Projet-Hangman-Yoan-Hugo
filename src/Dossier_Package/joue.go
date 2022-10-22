@@ -9,6 +9,7 @@ func (j *Joueur) lancement() {
 		fmt.Println("Les lettres que vous avez essayé sont :", j.chaine_mot)
 		afficheMotCache(mot_cache)
 		lettre := saisieLettre()
+		j.ajoutLettre(lettre)
 		if lettreEstPresente(lettre, mot) {
 			mot_cache = afficheMotAvecLettreTrouvee(lettre, mot, mot_cache)
 			fmt.Print("Bravo ! La lettre ", lettre, " est présente dans le mot\n")
