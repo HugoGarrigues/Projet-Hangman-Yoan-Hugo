@@ -33,7 +33,7 @@ func (j *Joueur)dessin_erreur(){
 
 
 
-//Fonction qui renvoie les mots entre deux mots du fichier Hangman.txt
+
 func betweenWord(mot1 string, mot2 string) {
 	var betweenWord string
 	nmot := ""
