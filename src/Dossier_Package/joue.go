@@ -65,7 +65,7 @@ func (j *Joueur) ContinuerPartie(mot_cache string, mot string) {
 			fmt.Println("Les lettres que vous avez essayé sont :", j.chaine_mot)
 			lettre := saisieLettre()
 			if j.ajoutLettre(lettre) == false {
-				fmt.Println("Vous avez déjà essayé cette lettre veuillé en saisir une autre, il vous reste ", j.essais, " essais.")
+				fmt.Println("Vous avez déjà essayé cette lettre veuillez en saisir une autre, il vous reste ", j.essais, " essais.")
 			} else {
 				j.ajoutLettre(lettre)
 				if lettreEstPresente(lettre, mot) {

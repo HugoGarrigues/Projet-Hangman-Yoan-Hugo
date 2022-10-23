@@ -65,7 +65,7 @@ func afficheMotAvecLettreTrouvee(lettre string, mot string, motCache string) str
 
 func afficheResultat(motCache string, mot string, nombreEssais int) {
 	if motEstTrouve(motCache) {
-		fmt.Println("Bravo, vous avez trouvé le mot ! \n Le mot etait ", mot)
+		fmt.Println("Bravo, vous avez trouvé le mot ! \n Le mot était ", mot)
 	} else {
 		fmt.Println("Vous avez perdu ! Le mot était : ", mot)
 	}
