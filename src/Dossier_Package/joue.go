@@ -27,6 +27,7 @@ func (j *Joueur) PremierLancement() {
 				} else {
 					j.essais--
 					fmt.Print("Dommage ! La lettre ", lettre, " n'est pas présente dans le mot\n Il vous reste ", j.essais, " essais\n")
+					j.dessin_erreur()
 				}
 			}
 		} else if choix == "2" {
@@ -71,7 +72,7 @@ func (j *Joueur) ContinuerPartie(mot_cache string, mot string) {
 					mot_cache = afficheMotAvecLettreTrouvee(lettre, mot, mot_cache)
 					fmt.Print("Bravo ! La lettre ", lettre, " est présente dans le mot\n")
 				} else {
-					j.essais--
+					j.essais -= 2
 					fmt.Print("Dommage ! La lettre ", lettre, " n'est pas présente dans le mot\n Il vous reste ", j.essais, " essais\n")
 				}
 			}
