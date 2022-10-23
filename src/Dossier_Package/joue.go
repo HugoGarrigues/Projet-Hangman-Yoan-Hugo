@@ -73,7 +73,6 @@ func (j *Joueur) RecupérationDonnéesSauvegarde() {
 	var nom_joueur string
 	var essais string
 	for scanner.Scan() {
-		// mot_cache doit etre égal à la ligne 1 du fichier // mot doit etre égal à la ligne 2 du fichier // chaine_mot doit etre égal à la ligne 3 du fichier // nom_joueur doit etre égal à la ligne 4 du fichier // essais doit etre égal à la ligne 5 du fichier
 		mot_cache = scanner.Text()
 		scanner.Scan()
 		mot = scanner.Text()
