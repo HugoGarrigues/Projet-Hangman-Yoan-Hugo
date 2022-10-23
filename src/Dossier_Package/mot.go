@@ -102,11 +102,11 @@ func contains(slice []int, element int) bool {
 	return false
 }
 
-func (j *Joueur) ajoutLettre(lettre string) {
+func (j *Joueur) ajoutLettre(lettre string)bool {
 	if lettreEstPresente(lettre, j.chaine_mot) {
-		fmt.Println("Vous avez déjà essayé cette lettre !")
-		j.essais++
+		return false
 	} else {
 		j.chaine_mot += lettre
 	}
+	return true
 }
