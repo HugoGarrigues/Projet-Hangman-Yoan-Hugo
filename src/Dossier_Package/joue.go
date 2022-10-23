@@ -38,7 +38,7 @@ func (j *Joueur) PremierLancement() {
 				fmt.Println("Bravo ! Vous avez trouvé le mot !")
 				break
 			} else {
-				j.essais--
+				j.essais -= 2
 				fmt.Println("Dommage ! Le mot n'est pas correct, il vous reste ", j.essais, " essais.")
 			}
 		} else if choix == "3" {
@@ -84,7 +84,7 @@ func (j *Joueur) ContinuerPartie(mot_cache string, mot string) {
 				fmt.Println("Bravo ! Vous avez trouvé le mot !")
 				break
 			} else {
-				j.essais--
+				j.essais -= 2
 				fmt.Println("Dommage ! Le mot n'est pas correct, il vous reste ", j.essais, " essais.")
 			}
 		} else if choix == "3" {
