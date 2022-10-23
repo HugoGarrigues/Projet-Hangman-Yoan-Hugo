@@ -45,14 +45,13 @@ func minuscule(lettre string) string {
 
 func verif_lettre(lettre string) bool {
 	counter := 0
-	for _,lettre := range lettre{
-		if lettre >='a' && lettre <= 'z' || lettre >='A' && lettre <= 'Z' || lettre >= '0' && lettre <= '9'{
-			counter+=1
+	for _, lettre := range lettre {
+		if lettre >= 'a' && lettre <= 'z' || lettre >= 'A' && lettre <= 'Z' || lettre >= '0' && lettre <= '9' {
+			counter += 1
 		}
 	}
-	if counter == len(lettre){
+	if counter == len(lettre) {
 		return true
 	}
 	return false
 }
-

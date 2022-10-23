@@ -93,15 +93,6 @@ func masquerMot(mot string) string {
 	return string(runes)
 }
 
-func contains(slice []int, element int) bool {
-	for _, e := range slice {
-		if e == element {
-			return true
-		}
-	}
-	return false
-}
-
 func (j *Joueur) ajoutLettre(lettre string) bool {
 	if lettreEstPresente(lettre, j.chaine_mot) {
 		return false
